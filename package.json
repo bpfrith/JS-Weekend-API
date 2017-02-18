@@ -9,6 +9,14 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "bpfrith",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bpfrith/JS-Weekend-API.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bpfrith/JS-Weekend-API/issues"
+  },
+  "homepage": "https://github.com/bpfrith/JS-Weekend-API#readme"
 }
