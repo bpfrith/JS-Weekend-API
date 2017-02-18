@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "##Key learning to practise and/or revise:",
   "main": "server.js",
-  "dependencies": {},
+  "dependencies": {
+    "express": "^4.14.1"
+  },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
