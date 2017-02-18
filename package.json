@@ -1,12 +1,15 @@
 {
   "name": "weekend_assignment",
   "version": "1.0.0",
-  "description": "##Key learning to practise and/or revise:",
+  "description": "Practice using JSON & APIs. Aim: web app. When a city is selected: it shows it's location on a google map, the current weather, and a paragraph of text about it from wikipedia.",
   "main": "server.js",
   "dependencies": {
     "express": "^4.14.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "foobar": "^1.1.0",
+    "webpack": "^2.2.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
@@ -20,5 +23,5 @@
   "bugs": {
     "url": "https://github.com/bpfrith/JS-Weekend-API/issues"
   },
-  "homepage": "https://github.com/bpfrith/JS-Weekend-API#readme"
+  "homepage": "https://github.com/bpfrith/JS-Weekend-API#README"
 }
