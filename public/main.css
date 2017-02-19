@@ -1,0 +1,111 @@
+body {
+  margin: 0;
+  font-family: 'Serif', monospace;
+}
+
+#map {
+  z-index: 1
+  margin: 0;
+  height: 100vh;
+  position: fixed;
+}
+
+#overlay {
+  margin: 100px;
+  padding: 00px;
+  background-color: #ffffff;
+  position: fixed;
+  z-index: 9;
+  box-shadow: 3px 4px 56px 19px rgba(0,0,0,0.75);
+}
+
+#title {
+  background-color: #534b4f;
+  padding: 30px;
+  padding-bottom: 1px;
+  padding-top: 20px;
+}
+
+#main {
+  padding: 30px;
+  padding-top: 15px;
+}
+
+#footer {
+  z-index: 10;
+  position: fixed;
+  /*height: 5%;*/
+  margin-left: 100px;
+  padding: 0;
+  /*position:absolute;*/
+    bottom:0;
+  /*width: 100%;*/
+  background-color: #534b4f;
+  box-shadow: 3px 4px 56px 19px rgba(0,0,0,0.75);
+}
+
+#footer > div > p {
+  margin: 5px;
+  padding-left: 30px;
+  padding: 0;
+  margin-right: 5%;
+}
+
+a {
+  text-decoration: none;
+  color: #ffffff;
+  font-family: 'Maven Pro';
+}
+
+h1 {
+  font-family: 'Serif';
+  color: #ffffff;
+  margin-top: 0;
+  padding: 0;
+}
+
+h2 {
+  font-family: 'Serif';
+  margin: 0;
+  padding: 0;
+}
+
+#notes-select {
+  color: #ffffff;
+  font-family: 'Serif';
+  margin-left: 30px;
+  margin-top: 10px;
+  margin-right: 30px;
+  margin-bottom: 10px;
+}
+
+#show-notes:hover {
+  cursor: pointer;
+}
+
+#hide-notes:hover {
+  cursor: pointer;
+}
+
+#show-description:hover {
+  cursor: pointer;
+  color: #00ffff;
+}
+
+#hide-description:hover {
+  cursor: pointer;
+  color: #0000ff;
+}
+
+#notes {
+  background-color: #fffff0;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 30px;
+  margin: 0;
+}
+
+#notes p {
+  margin-left: 0;
+  padding-left: 0;
+}
