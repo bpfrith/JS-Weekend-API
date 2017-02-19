@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CitySnaps</title>
+  <link href="https://fonts.googleapis.com/css?family=Maven+Pro|Play|Heebo|Michroma" rel="stylesheet">
+  <link id="main-style" rel='stylesheet' type='text/css' href='main.css'>
+  <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCmqrMrR8idE78QlmwoUBSFbRhALiSe7Uw'></script>
+  <!-- <script src='mapStyle.js'></script> -->
+  <!-- <script src='mapWrapper.js'></script> -->
+  <!-- <script src='ukCities.js'></script> -->
+  <!-- <script src='googleBits.js'></script> -->
+  <script src='index.js'></script>
+</head>
+<body>
+
+  <div id="overlay">
+
+    <div id="title">
+      <h1>Cities</h1>
+    </div>
+
+    <div id="main">
+      <div id="test">
+
+        <div id="this-div">
+          <p style="white-space:pre;">City:   <span id="name"></span></p>
+          <p style="white-space:pre;">Coordinates:   <span id="coords"></span></p>
+          <p style="white-space:pre;">Local time:   <span id="time"></span></p>
+          <p style="white-space:pre;">Weather:   <span id="weather"></span></p>
+          <p id="show-description">Show description</p>
+          <p id="hide-description">[Hide description]</p>
+          <p id="wiki">No description available.</p>
+          <p id="hide-description"></p>
+        </div>
+        <hr/>
+
+        <div id="input">
+          <h2>Next City</h2>
+          <input type="text" id="city-chooser"/> <br/>
+          <input type="text" id="country-chooser"/> country 
+          <button id="go">GO</button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div id="footer">
+    <div id="notes-select">
+      <h2> <span id=show-notes>
+        APIs and explanation</span> <span id="hide-notes">[close]</span>
+      </h2>
+    </div>
+    <div id="notes">
+      <p>
+        GOOGLE: geolocator to get the coordinates, map for the map.
+      </p>
+      <p>
+        TIMEZONEDB: local time. Gets sent coordinates from the Google geolocate callback.
+      </p>
+      <p>
+        OPENWEATHERMAP: weather. Gets sent the same placename as the Google geolocator.
+      </p>
+      <p>
+        WIKIPEDIA: descriptions of places. Some work needed to ensure correct place when multiple matching placenames.
+      </p>
+      <p>
+        SOURCE: <a style="color: black;" href="https://github.com/bpfrith/JS-Weekend-API" target="_blank">https://github.com/bpfrith/JS-Weekend-API</a>
+      </p>
+      <select id="choose-style">
+      <option value="test">test</option>
+      <option value="main">main</option>
+      </select>
+      <button id="change-style">change style</button>
+    </div>
+  </div>
+
+<div id="map"></div>
+
+</body>
+</html>
