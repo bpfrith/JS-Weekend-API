@@ -22,7 +22,7 @@ MapWrapper.prototype = {
       // console.log(event.latLng.lat());
       var position = {lat: event.latLng.lat(), lng: event.latLng.lng()};
       var marker = this.addMarker(position);
-      this.addInfoWindow(marker, "I don't know, you clicked here...");
+      this.addInfoWindow(marker, "Warning! Here there be Monsters!");
     }.bind(this));
   },
   moveCenter: function(coords){

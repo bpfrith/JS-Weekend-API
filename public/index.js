@@ -1,6 +1,6 @@
 var app = function(){
-  // var mapDiv = document.querySelector(#map);
-  // var mapStyle = new MapStyle();
+  var mapDiv = document.querySelector(#map);
+  var mapStyle = new MapStyle();
   var map = new MapWrapper(mapDiv, {lat: -34.427812, lng: 150.893061}, 12, mapStyle.getStyle());
   // var cityNow = {};
   // var builtCities = {};
@@ -71,8 +71,6 @@ var app = function(){
     cityGet(name, country);
   }
 
-
-
   newCity("Edinburgh", "uk");
 
   var go = function(){
@@ -94,6 +92,27 @@ var app = function(){
     }
   }
 
+  var getWiki = function(name, country){
+    var url = "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=" + name + "&origin=*";
+    makeRequest(url, function(){
+      if (this.status !== 200){
+        return;
+      } else {
+        var response = JSON.parse(this.responseText);
+        console.log("wikiResponse:")
+        var pages = response.query.pages;
+        pagesArray = [];
+        for(page in pages) {pagesArray.push(pages[page])};
+          console.log(pagesArray);
+          console.log(pagesArray[0].extract)
+          // var thisDiv = document.querySelector("#this-div");
+          var wikiP = document.querySelector("#wiki");
+          // thisDiv.appendChild(weatherP);
+          wikiP.innerHTML = "From Wikipedia:<br/><br/>" + pagesArray[0].extract;
+        }
+      });
+  }
+
   var getWeather = function(name, country){
     var url = "http://api.openweathermap.org/data/2.5/weather?q=" + name + "," + country + "&APPID=07830595d15fabfc0b091e97443be419";
     // console.log(url);
@@ -109,6 +128,60 @@ var app = function(){
         weatherP.innerText = description + ", " + temp + "°C.";
       }
     });
+  }
+
+  var hideNotes = document.querySelector("#hide-notes");
+  hideNotes.style.display = "none";
+
+  var notesDiv = document.querySelector("#notes");
+  notesDiv.style.display = "none";
+
+  var showNotes = document.querySelector("#show-notes");
+  showNotes.onclick = function(){
+    notesDiv.style.display = "block";
+    hideNotes.style.display = "inline";
+    hideNotes.onclick = function(){
+      notesDiv.style.display = "none";
+      hideNotes.style.display = "none";
+    }
+  }
+
+  var hideNotes = document.querySelector("#hide-notes");
+  hideNotes.style.display = "none";
+
+  var notesDiv = document.querySelector("#notes");
+  notesDiv.style.display = "none";
+
+  var description = document.querySelector("#wiki");
+  wiki.style.display = "none";
+
+  var hideDescription = document.querySelector("#hide-description");
+  hideDescription.style.display = "none";
+
+  var input = document.querySelector("#input");
+
+  var showDescription = document.querySelector("#show-description");
+  showDescription.onclick = function(){
+    showDescription.style.display = "none";
+    input.style.display = "none";
+    hideDescription.style.display = "block";
+    description.style.display = "block";
+    hideDescription.onclick = function(){
+      showDescription.style.display = "block";
+      input.style.display = "block";
+      hideDescription.style.display = "none";
+      description.style.display = "none";
+    }
+  }
+
+  var swapStyleSheet = function(sheet){
+    document.getElementById('main-style').setAttribute('href', sheet);
+  }
+
+  var changeStyle = document.querySelector("#change-style");
+  changeStyle.onclick = function(){
+    var chooseStyle = document.querySelector("#choose-style");
+    swapStyleSheet(chooseStyle.value + '.css');
   }
 
 }

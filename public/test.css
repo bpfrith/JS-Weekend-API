@@ -1,26 +1,36 @@
 body {
   margin: 0;
-  font-family: 'Serif', monospace;
+  font-family: monospace;
 }
 
 #map {
-  z-index: 1;
+  /*width: 500px;
+  height: 500px;*/
+  
+  z-index: 1
   margin: 0;
   height: 100vh;
   position: fixed;
+  /*background-color: none;*/
 }
 
 #overlay {
-  margin: 100px;
+  width: 100%;
+  display: flex;
   padding: 00px;
-  background-color: #ffffff;
+  background-color: yellow;
   position: fixed;
   z-index: 9;
   box-shadow: 3px 4px 56px 19px rgba(0,0,0,0.75);
 }
 
+#this-div {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 #title {
-  background-color: #534b4f;
+  background-color: black;
   padding: 30px;
   padding-bottom: 1px;
   padding-top: 20px;
@@ -29,6 +39,7 @@ body {
 #main {
   padding: 30px;
   padding-top: 15px;
+  background-color: none;
 }
 
 #footer {
@@ -40,7 +51,7 @@ body {
   /*position:absolute;*/
     bottom:0;
   /*width: 100%;*/
-  background-color: #534b4f;
+  background-color: black;
   box-shadow: 3px 4px 56px 19px rgba(0,0,0,0.75);
 }
 
@@ -48,31 +59,30 @@ body {
   margin: 5px;
   padding-left: 30px;
   padding: 0;
+  /*color: white;*/
   margin-right: 5%;
+/*  font-family: 'Maven Pro';*/
+  /*float: right;*/
 }
 
 a {
   text-decoration: none;
-  color: #ffffff;
-  font-family: 'Maven Pro';
+  color: white;
 }
 
 h1 {
-  font-family: 'Serif';
-  color: #ffffff;
+  color: white;
   margin-top: 0;
   padding: 0;
 }
 
 h2 {
-  font-family: 'Serif';
   margin: 0;
   padding: 0;
 }
 
 #notes-select {
-  color: #ffffff;
-  font-family: 'Serif';
+  color: white;
   margin-left: 30px;
   margin-top: 10px;
   margin-right: 30px;
@@ -89,16 +99,16 @@ h2 {
 
 #show-description:hover {
   cursor: pointer;
-  color: #00ffff;
+  color: red;
 }
 
 #hide-description:hover {
   cursor: pointer;
-  color: #0000ff;
+  color: red;
 }
 
 #notes {
-  background-color: #fffff0;
+  background-color: yellow;
   padding-top: 15px;
   padding-bottom: 15px;
   padding-left: 30px;
