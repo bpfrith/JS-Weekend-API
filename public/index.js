@@ -17,7 +17,7 @@ var app = function(){
   var getCurrentTime = function(lat, lng){
     var url = "https://api.timezonedb.com/v2/get-time-zone?key=AFQAZRVOAIDL&format=json&by=position&lat=" + lat + "&lng=" + lng;
     makeRequest(url, function(){
-      console.log(JSON.parse(this.responseText));
+      // console.log(JSON.parse(this.responseText));
       postCurrentTime(JSON.parse(this.responseText));
     })
   }
@@ -61,6 +61,46 @@ var app = function(){
     return this.charAt(0).toUpperCase() + this.slice(1);
   }
 
+  var round = function(number){
+    return (Math.round(number*100))/100;
+  }
+
+  var getWeather = function(name, country){
+    var url = "http://api.openweathermap.org/data/2.5/weather?q=" + name + "," + country + "&APPID=07830595d15fabfc0b091e97443be419";
+    // console.log(url);
+    makeRequest(url, function(){
+      if (this.status !== 200){
+        return;
+      } else {
+        var response = JSON.parse(this.responseText);
+        // console.log(response);
+        var weatherP = document.querySelector("#weather");
+        var temp = round(response["main"]["temp"]-273.15);
+        var description = response["weather"][0]["description"].capitalize();
+        weatherP.innerText = description + ", " + temp + "°C.";
+      }
+    });
+  }
+
+  var getWiki = function(name, country){
+    var url = "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=" + name + "&origin=*";
+    makeRequest(url, function(){
+      if (this.status !== 200){
+        return;
+      } else {
+        var response = JSON.parse(this.responseText);
+        // console.log("wikiResponse:")
+        var pages = response.query.pages;
+        pagesArray = [];
+        for(page in pages) {pagesArray.push(pages[page])};
+          // console.log(pagesArray);
+          // console.log(pagesArray[0].extract)
+          var wikiP = document.querySelector("#wiki");
+          wikiP.innerHTML = "From Wikipedia:<br/><br/>" + pagesArray[0].extract;
+        }
+      });
+  }
+
   var cityGet = function(name, country){
     requestUkCoords(name, country);
     getWeather(name, country);
@@ -87,47 +127,9 @@ var app = function(){
   var cityChoice = document.querySelector("#city-chooser");
   cityChoice.onkeyup = function(event){
     if (event.keyCode === 13) {
-      console.log("cityChoice");
+      // console.log("cityChoice");
       go();
     }
-  }
-
-  var getWiki = function(name, country){
-    var url = "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=" + name + "&origin=*";
-    makeRequest(url, function(){
-      if (this.status !== 200){
-        return;
-      } else {
-        var response = JSON.parse(this.responseText);
-        console.log("wikiResponse:")
-        var pages = response.query.pages;
-        pagesArray = [];
-        for(page in pages) {pagesArray.push(pages[page])};
-          console.log(pagesArray);
-          console.log(pagesArray[0].extract)
-          // var thisDiv = document.querySelector("#this-div");
-          var wikiP = document.querySelector("#wiki");
-          // thisDiv.appendChild(weatherP);
-          wikiP.innerHTML = "From Wikipedia:<br/><br/>" + pagesArray[0].extract;
-        }
-      });
-  }
-
-  var getWeather = function(name, country){
-    var url = "http://api.openweathermap.org/data/2.5/weather?q=" + name + "," + country + "&APPID=07830595d15fabfc0b091e97443be419";
-    // console.log(url);
-    makeRequest(url, function(){
-      if (this.status !== 200){
-        return;
-      } else {
-        var response = JSON.parse(this.responseText);
-        // console.log(response);
-        var weatherP = document.querySelector("#weather");
-        var temp = round(response["main"]["temp"]-273.15);
-        var description = response["weather"][0]["description"].capitalize();
-        weatherP.innerText = description + ", " + temp + "°C.";
-      }
-    });
   }
 
   var hideNotes = document.querySelector("#hide-notes");
