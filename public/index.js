@@ -1,5 +1,5 @@
 var app = function(){
-  var mapDiv = document.querySelector(#map);
+  var mapDiv = document.querySelector("#map");
   var mapStyle = new MapStyle();
   var map = new MapWrapper(mapDiv, {lat: -34.427812, lng: 150.893061}, 12, mapStyle.getStyle());
   // var cityNow = {};
