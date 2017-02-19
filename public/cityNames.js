@@ -1,0 +1,1 @@
+var cityText = require('./countriesToCities.json');
