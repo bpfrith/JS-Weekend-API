@@ -5,7 +5,7 @@ var app = function(){
   // var cityNow = {};
   // var builtCities = {};
   // var ukCities = new UkCities();
-  // var coordinator = new Coordinator();
+  var coordinator = new Coordinator();
 
   var ukCitiesCoords = {};
 
@@ -55,6 +55,60 @@ var app = function(){
     request.open('GET', url);
     request.onload = callback;
     request.send();
+  }
+
+  String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+  }
+
+  var cityGet = function(name, country){
+    requestUkCoords(name, country);
+    getWeather(name, country);
+    getWiki(name, country);
+  }
+
+  var newCity = function(name, country){
+    cityGet(name, country);
+  }
+
+
+
+  newCity("Edinburgh", "uk");
+
+  var go = function(){
+    var cityChoice = document.querySelector("#city-chooser");
+    var cityChoiceArr = cityChoice.value.split(" ");
+    var capsFixed = [];
+    for(word of cityChoiceArr){
+      capsFixed.push(word.capitalize());
+    }
+    var queryString = capsFixed.join(" ");
+    newCity(queryString, "");
+  }
+
+  var cityChoice = document.querySelector("#city-chooser");
+  cityChoice.onkeyup = function(event){
+    if (event.keyCode === 13) {
+      console.log("cityChoice");
+      go();
+    }
+  }
+
+  var getWeather = function(name, country){
+    var url = "http://api.openweathermap.org/data/2.5/weather?q=" + name + "," + country + "&APPID=07830595d15fabfc0b091e97443be419";
+    // console.log(url);
+    makeRequest(url, function(){
+      if (this.status !== 200){
+        return;
+      } else {
+        var response = JSON.parse(this.responseText);
+        // console.log(response);
+        var weatherP = document.querySelector("#weather");
+        var temp = round(response["main"]["temp"]-273.15);
+        var description = response["weather"][0]["description"].capitalize();
+        weatherP.innerText = description + ", " + temp + "°C.";
+      }
+    });
   }
 
 }
