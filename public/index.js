@@ -21,7 +21,31 @@ var app = function(){
       postCurrentTime(JSON.parse(this.responseText));
     })
   }
-  
+
+  var setUkCoords = function (results, status) {
+      if (status === google.maps.GeocoderStatus.OK) {
+        // console.log(results);
+        output = {
+          name: results[0].formatted_address,
+          lat: results[0].geometry.location.lat(),
+          lng: results[0].geometry.location.lng(),
+          object: results[0]
+        }
+        // console.log(output);
+        var nameP = document.querySelector("#name");
+        var coordsP = document.querySelector("#coords");
+        // thisDiv.appendChild(nameP);
+        // thisDiv.appendChild(coordsP);
+        // test.appendChild(thisDiv);
+        nameP.innerText = output.name;
+        coordsP.innerText = output.lat + ", " + output.lng;
+        map.moveCenter({lat: output.lat, lng: output.lng});
+        getCurrentTime(output.lat, output.lng);
+      } else {
+        alert("Argh! Here there be monsters! : " + status);
+      }
+    }
+
 }
 
 window.onload = app;
